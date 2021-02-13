@@ -1,0 +1,84 @@
+﻿@page
+@model HRPayRoll.Pages.Employee.EditModel
+@{
+    <form method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label asp-for="Employee.EmployeeName" class="control-label"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Employee.EmployeeName" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label asp-for="Employee.DateOfBirth" class="control-label"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Employee.DateOfBirth" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label asp-for="Employee.TIN" class="control-label"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Employee.TIN" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label asp-for="Employee.EmployeeType" class="control-label"></label>
+                </div>
+                <div class="col-sm-3">
+                    <input asp-for="Employee.EmployeeType" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.Employee.EmployeeType == "Regular")
+                {
+                    <div class="col-sm-3">
+                        Number of absences in days :
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-3">
+                        Number of worked days :
+                    </div>
+                }
+                <div class="col-sm-3">
+                    <input asp-for="Employee.NoOfDays" min="0" />
+                </div>
+                <div class="col-sm-3">
+                    <span class="field-validation-valid text-danger" asp-validation-for="Employee.NoOfDays"></span>
+                </div>
+            </div>
+            <div class="row">
+                    @if (Model.Employee.Salary > 0)
+                    {
+                        <div class="col-sm-3">
+                            <label asp-for="Employee.Salary" class="control-label"></label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Model.Employee.Salary.ToString("0.##")
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-3" hidden="hidden">
+                            <label asp-for="Employee.Salary" class="control-label"></label>
+                        </div>
+                        <div class="col-sm-3" hidden="hidden">
+                            @Model.Employee.Salary.ToString("0.##")
+                        </div>
+                    }
+
+                </div>
+            <div class="form-group">
+                    <input type="submit" value="Calculate Salary" class="btn btn-primary" />
+                </div>              
+        </div>
+</form>
+}

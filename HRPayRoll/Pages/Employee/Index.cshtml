@@ -1,0 +1,27 @@
+﻿
+@page
+
+@model HRPayRoll.Pages.Employee.IndexModel
+@addTagHelper *,Microsoft.AspNetCore.MVC.TagHelpers
+    <form method="post">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
+            <tr>
+                <th>Select</th>
+                <th>Employee Name</th>
+                <th>Employee Type</th>
+                <th></th>
+            </tr>
+            @if (Model.ListOfEmployee.EmployeeModels != null)
+            {
+                @foreach (var emp in Model.ListOfEmployee.EmployeeModels)
+                {
+                    <tr>
+                        <td>@emp.EmployeeName</td>
+                        <td>@emp.EmployeeType</td>
+                    <td>  <input type="submit" value="select"  asp-route-id="@emp.EmpoyeeID" asp-page-handler="Edit" /></td>
+                    </tr>
+                }
+            }
+        </table>
+    </form>
+
